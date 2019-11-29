@@ -11,10 +11,12 @@ os.chdir("//sbs2003/Daten-CME/")
 
 data = pd.DataFrame()
 
+# for file in glob.glob("*.csv")
 for file in glob.glob("*_1_.parquet"):
     try:
         print(file)
         df = pd.read_parquet(file, columns=["End_Lon", "End_Lat"])
+        # df = pd.read_csv(file, usecols=["End_Lon", "End_Lat"])
         print("Loaded {}".format(file))
         data=data.append(df,ignore_index=True)
         del df
