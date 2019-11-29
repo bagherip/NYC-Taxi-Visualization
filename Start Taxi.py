@@ -58,4 +58,3 @@ if dauer>60:
     print(dauer/60,"minute")
 else:
     print(dauer,"second")
-
