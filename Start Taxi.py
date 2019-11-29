@@ -51,9 +51,6 @@ import pandas as pd
 import glob, os
 import time
 
-# Diese Datei lädt alle parquet dateien im Ordner auf RAM und dann versucht ein Plot zu erstellen
-
-
 start=time.time()
 os.chdir("//sbs2003/Daten-CME/")
 
