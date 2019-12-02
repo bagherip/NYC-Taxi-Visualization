@@ -46,26 +46,3 @@ for file in glob.glob("*.csv"):
         print("Time needed:" + str(time.time() - t1))
     else:
         print(file + "skipped available files")
-
-### Converting with pandas
-for file in glob.glob("*.csv"):
-    t1 = time.time()
-    if not os.path.exists(file + ".parquet"):  # checks if hte file is already converted
-        df = pd.read_csv(file, usecols=["End_Lat", "End_Lon"],
-                         dtype={"End_Lat": np.float32, "End_Lon": np.float32},
-                         delimiter=' *, *', engine="python")
-        chunk = chunk.rename(columns={"dropoff_latitude": "End_Lat", "dropoff_longitude": "End_Lon"})
-        print(f"opened {file}")
-        df.to_parquet((file + ".parquet"))
-        print("converted {} in {} seconds".format(file, time.time() - t1))
-        del df
-
-### Converting with Dask
-for file in glob.glob("*.csv"):
-    t1 = time.time()
-    dask_csv = dd.read_csv(file)
-    print("opened " + file)
-
-    dask_csv.to_parquet((file + ".parquet"))
-    print("converted {} in {} seconds".format(file, time.time() - t1))
-    print(dask_csv)
