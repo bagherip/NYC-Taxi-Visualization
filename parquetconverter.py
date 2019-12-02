@@ -48,7 +48,7 @@ for file in glob.glob("*.csv"):
         print(file + "vorhanden daher übersprungen")
 
 
-### Converting mit pandas
+### Converting with pandas
 for file in glob.glob("*.csv"):
     t1=time.time()
     if not os.path.exists(file+"_12.08_.parquet"): #checks if hte file is already converted
@@ -62,6 +62,15 @@ for file in glob.glob("*.csv"):
         del df
 
 
+### Converting with Dask
+for file in glob.glob("*.csv"):
+    t1=time.time()
+    dask_csv=dd.read_csv(file)
+    print("opened "+file)
+
+    dask_csv.to_parquet((file+".parquet"))
+    print("converted {} in {} Sekunden".format(file,time.time()-t1))
+    print(dask_csv)
 
 
 
