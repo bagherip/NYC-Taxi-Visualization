@@ -55,7 +55,7 @@ for file in glob.glob("*.csv"):
                          dtype={"End_Lat": np.float32, "End_Lon": np.float32},
                          delimiter=' *, *', engine="python")
         chunk = chunk.rename(columns={"dropoff_latitude": "End_Lat", "dropoff_longitude": "End_Lon"})
-        print("opened " + file)
+        print(f"opened {file}")
         df.to_parquet((file + ".parquet"))
         print("converted {} in {} seconds".format(file, time.time() - t1))
         del df
