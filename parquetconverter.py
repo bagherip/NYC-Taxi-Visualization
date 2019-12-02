@@ -42,7 +42,7 @@ for file in glob.glob("*.csv"):
         target = path + file + ".parquet"
         print(f"In process: {file} ...")
         parquet_converter(file)
-        print("{} got converted to parquet \n".format(file))
+        print(f"{file} got converted to parquet \n")
         print("Time needed:" + str(time.time() - t1))
     else:
         print(file + "skipped available files")
@@ -50,7 +50,7 @@ for file in glob.glob("*.csv"):
 ### Converting with pandas
 for file in glob.glob("*.csv"):
     t1 = time.time()
-    if not os.path.exists(file + "_12.08_.parquet"):  # checks if hte file is already converted
+    if not os.path.exists(file + ".parquet"):  # checks if hte file is already converted
         df = pd.read_csv(file, usecols=["End_Lat", "End_Lon"],
                          dtype={"End_Lat": np.float32, "End_Lon": np.float32},
                          delimiter=' *, *', engine="python")
