@@ -47,30 +47,25 @@ for file in glob.glob("*.csv"):
     else:
         print(file + "vorhanden daher übersprungen")
 
-
 ### Converting with pandas
 for file in glob.glob("*.csv"):
-    t1=time.time()
-    if not os.path.exists(file+"_12.08_.parquet"): #checks if hte file is already converted
-        df=pd.read_csv(file, usecols=["End_Lat", "End_Lon"],
-                                 dtype={"End_Lat": np.float32, "End_Lon": np.float32},
-                                 delimiter=' *, *', engine="python")
+    t1 = time.time()
+    if not os.path.exists(file + "_12.08_.parquet"):  # checks if hte file is already converted
+        df = pd.read_csv(file, usecols=["End_Lat", "End_Lon"],
+                         dtype={"End_Lat": np.float32, "End_Lon": np.float32},
+                         delimiter=' *, *', engine="python")
         chunk = chunk.rename(columns={"dropoff_latitude": "End_Lat", "dropoff_longitude": "End_Lon"})
-        print("opened "+file)
+        print("opened " + file)
         df.to_parquet((file + ".parquet"))
-        print("converted {} in {} Sekunden".format(file,time.time()-t1))
+        print("converted {} in {} Sekunden".format(file, time.time() - t1))
         del df
-
 
 ### Converting with Dask
 for file in glob.glob("*.csv"):
-    t1=time.time()
-    dask_csv=dd.read_csv(file)
-    print("opened "+file)
+    t1 = time.time()
+    dask_csv = dd.read_csv(file)
+    print("opened " + file)
 
-    dask_csv.to_parquet((file+".parquet"))
-    print("converted {} in {} Sekunden".format(file,time.time()-t1))
+    dask_csv.to_parquet((file + ".parquet"))
+    print("converted {} in {} Sekunden".format(file, time.time() - t1))
     print(dask_csv)
-
-
-
