@@ -45,7 +45,7 @@ for file in glob.glob("*.csv"):
         print("{} got converted to parquet \n".format(file))
         print("Time needed:" + str(time.time() - t1))
     else:
-        print(file + "vorhanden daher übersprungen")
+        print(file + "skipped available files")
 
 ### Converting with pandas
 for file in glob.glob("*.csv"):
@@ -57,7 +57,7 @@ for file in glob.glob("*.csv"):
         chunk = chunk.rename(columns={"dropoff_latitude": "End_Lat", "dropoff_longitude": "End_Lon"})
         print("opened " + file)
         df.to_parquet((file + ".parquet"))
-        print("converted {} in {} Sekunden".format(file, time.time() - t1))
+        print("converted {} in {} seconds".format(file, time.time() - t1))
         del df
 
 ### Converting with Dask
@@ -67,5 +67,5 @@ for file in glob.glob("*.csv"):
     print("opened " + file)
 
     dask_csv.to_parquet((file + ".parquet"))
-    print("converted {} in {} Sekunden".format(file, time.time() - t1))
+    print("converted {} in {} seconds".format(file, time.time() - t1))
     print(dask_csv)
