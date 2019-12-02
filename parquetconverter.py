@@ -46,3 +46,22 @@ for file in glob.glob("*.csv"):
         print("Time needed:" + str(time.time() - t1))
     else:
         print(file + "vorhanden daher übersprungen")
+
+
+### Converting mit pandas
+for file in glob.glob("*.csv"):
+    t1=time.time()
+    if not os.path.exists(file+"_12.08_.parquet"): #checks if hte file is already converted
+        df=pd.read_csv(file, usecols=["End_Lat", "End_Lon"],
+                                 dtype={"End_Lat": np.float32, "End_Lon": np.float32},
+                                 delimiter=' *, *', engine="python")
+        chunk = chunk.rename(columns={"dropoff_latitude": "End_Lat", "dropoff_longitude": "End_Lon"})
+        print("opened "+file)
+        df.to_parquet((file + ".parquet"))
+        print("converted {} in {} Sekunden".format(file,time.time()-t1))
+        del df
+
+
+
+
+
