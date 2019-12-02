@@ -69,3 +69,4 @@ for file in glob.glob("*.csv"):
     dask_csv.to_parquet((file + ".parquet"))
     print("converted {} in {} seconds".format(file, time.time() - t1))
     print(dask_csv)
+
