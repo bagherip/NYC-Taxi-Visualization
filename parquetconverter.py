@@ -10,7 +10,6 @@ import pyarrow.parquet as pq
 path = "//sbs2003/Daten-CME/"
 os.chdir(path)
 
-
 ### Converting with pyarrow engine
 def parquet_converter(file):
     chunksize = 500000
