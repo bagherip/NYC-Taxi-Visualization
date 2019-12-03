@@ -28,5 +28,5 @@ agg = canvas.points(data, 'End_Lon', 'End_Lat')
 pic = tf.set_background(tf.shade(agg, min_alpha=200, cmap=fire), "black")
 utils.export_image(pic, "Onefile END", fmt=".png")
 
-print("Image saved!")
+print("Image saved! ")
 print("Time required:", time.time() - t1)
