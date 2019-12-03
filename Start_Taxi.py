@@ -11,7 +11,7 @@ os.chdir("//sbs2003/Daten-CME/")
 
 data = pd.DataFrame()
 
-for file in glob.glob("*.csv"):
+for file in glob.glob("*2009-10*.csv"):
 # for file in glob.glob("*_1_.parquet"):
     try:
         print(file)
@@ -32,13 +32,13 @@ x= data['End_Lon'].sample(1000).to_numpy()
 # Evaluate a gaussian kde on a regular grid of nbins x nbins over data extents
 nbins = 700
 k = kde.gaussian_kde([x, y])
-xi, yi = np.mgrid[x.min():x.max():nbins * 1j, y.min():y.max():nbins * 1j]
+xi, yi = np.mgrid[x.min():x.max():nbins * 2j, y.min():y.max():nbins * 2j]
 zi = k(np.vstack([xi.flatten(), yi.flatten()]))
 
 # Parameters and Settings
 size=0.002
 quality=2000
-a=0.1
+a=0.5
 plt.style.use('dark_background')
 plt.xlim(-74.25,-73.7)
 plt.ylim(40.5,41.0)
