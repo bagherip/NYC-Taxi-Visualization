@@ -1,7 +1,6 @@
 import glob
 import os
 import time
-
 import datashader as ds
 import pandas as pd
 from colorcet import fire
@@ -14,7 +13,7 @@ t1 = time.time()
 
 
 data = pd.DataFrame()
-# for file in glob.glob("*2013-10*.parquet"):
+# for file in glob.glob("*2013-10*.parquet"): # Depending ov the file this line can be activated or deactivated
 for file in glob.glob("*2009-06.csv"):
     df = pd.read_csv(file, usecols=["End_Lon", "End_Lat"])
     print(df)
