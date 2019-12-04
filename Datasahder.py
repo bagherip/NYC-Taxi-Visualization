@@ -11,7 +11,6 @@ os.chdir("//sbs2003/Daten-CME/")
 
 t1 = time.time()
 
-
 data = pd.DataFrame()
 # for file in glob.glob("*2013-10*.parquet"): # Depending ov the file this line can be activated or deactivated
 for file in glob.glob("*2009-06.csv"):
