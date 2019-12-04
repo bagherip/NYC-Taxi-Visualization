@@ -55,3 +55,4 @@ print("Image saved!")
 print(
     "Time required:",
     time.time() - t1)
+
