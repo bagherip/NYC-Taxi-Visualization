@@ -10,6 +10,7 @@ import pyarrow.parquet as pq
 path = "//sbs2003/Daten-CME/"
 os.chdir(path)
 
+
 ### Converting with pandas
 def pandas_converter():
     for file in glob.glob("*.csv"):
@@ -24,6 +25,7 @@ def pandas_converter():
             print("converted {} in {} seconds".format(file, time.time() - t1))
             del df
 
+
 ### Converting with Dask
 def dask_converter():
     for file in glob.glob("*.csv"):
@@ -33,6 +35,7 @@ def dask_converter():
     dask_csv.to_parquet((file + ".parquet"))
     print("converted {} in {} seconds".format(file, time.time() - t1))
     print(dask_csv)
+
 
 ### Converting with pyarrow engine
 def parquet_converter(file):

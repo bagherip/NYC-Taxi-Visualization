@@ -14,13 +14,7 @@ t1 = time.time()
 data = pd.DataFrame()
 # for file in glob.glob("*2013-10*.parquet"):  # Depending on the file this line can be activated or deactivated
 for file in glob.glob("*2009-06.csv"): # comment this line out if the line above is not commented
-    df = pd.read_csv(
-        file,
-        usecols=[
-            "End_Lon",
-            "End_Lat"
-        ]
-    )
+    df = pd.read_csv(file,usecols=["End_Lon","End_Lat"])
     print(df)
     print("Loaded {}".format(file))
     data = data.append(df)
@@ -33,25 +27,12 @@ canvas = ds.Canvas(x_range=(-74.25, -73.7),
                    plot_width=4000,
                    plot_height=4000)
 
-agg = canvas.points(data,
-                    'End_Lon',
-                    'End_Lat')
+agg = canvas.points(data,'End_Lon','End_Lat')
 
-pic = tf.set_background(
-    tf.shade(
-        agg,
-        min_alpha=200,
-        cmap=fire
-    ),
-    "black"
-)
+pic = tf.set_background(tf.shade(agg,min_alpha=200,cmap=fire),
+                        "black")
 
-utils.export_image(pic,
-                   "Onefile_END",
-                   fmt=".png"
-                   )
+utils.export_image(pic, 'Onefile_END', fmt='.png')
 
-print("Image saved!")
-print(
-    "Time required:",
-    time.time() - t1)
+print('Image saved!')
+print('Time required:', time.time() - t1)
